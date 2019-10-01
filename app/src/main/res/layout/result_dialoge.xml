@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@drawable/dialoge_back"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dialoge_back"
-        android:orientation="vertical">
         <TextView
             android:id="@+id/dialogeTitle"
             android:layout_gravity="center_horizontal"
@@ -39,7 +35,7 @@
             android:paddingTop="5dp"/>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -72,9 +68,9 @@
                 android:textSize="16sp"
                 android:padding="5dp"/>
         </LinearLayout>
-    </LinearLayout>
+
 <LinearLayout
-    android:layout_marginTop="-30dp"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -82,13 +78,14 @@
     <ImageView
         android:id="@+id/restartBtn"
         android:clickable="true"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="60dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/restart"/>
     <ImageView
         android:id="@+id/exitBtn"
         android:clickable="true"
+        android:layout_marginTop="3dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/exit"/>

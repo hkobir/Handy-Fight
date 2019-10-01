@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,18 +20,25 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    private SharedPreferences sharedPreferences;
     private int totalStage = 10;
     private int cStage = 0;
     private Random random;
-    private int playerChoice = 0,computerChoice = 0;
-    private int rock=1,paper=2, sissor =3;
-    private int playerScore=0,computerScore=0;
+    private int playerChoice = 0, computerChoice = 0;
+    private int rock = 1, paper = 2, sissor = 3;
+    private int playerScore = 0, computerScore = 0, highScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         random = new Random();
+        sharedPreferences = getSharedPreferences("highscore", MODE_PRIVATE);
+        highScore = sharedPreferences.getInt("hScore",0);
 
 
         //guess player choice
@@ -56,177 +66,128 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
     }
 
-    public void play(){
+    public void play() {
         //guess computer choice
         cStage++;
 
         computerChoice = random.nextInt((3 - 1) + 1) + 1;
-        if(playerChoice==rock&&computerChoice==rock){
+        if (playerChoice == rock && computerChoice == rock) {
             binding.playerSelectIV.setImageResource(R.drawable.user_rock);
             binding.computerSelectIV.setImageResource(R.drawable.computer_rock);
             binding.resultTV.setText("Draw!");
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-        else if(playerChoice==rock&&computerChoice==paper){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == rock && computerChoice == paper) {
             binding.playerSelectIV.setImageResource(R.drawable.user_rock);
             binding.computerSelectIV.setImageResource(R.drawable.computer_paper);
             binding.resultTV.setText("Oops! You failed");
 
             computerScore++;
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-        else if(playerChoice==rock&&computerChoice==sissor){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == rock && computerChoice == sissor) {
             binding.playerSelectIV.setImageResource(R.drawable.user_rock);
             binding.computerSelectIV.setImageResource(R.drawable.computer_sissor);
             binding.resultTV.setText("Well Done! You passed");
 
             playerScore++;
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-
-
-        else if(playerChoice==paper&&computerChoice==paper){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == paper && computerChoice == paper) {
             binding.playerSelectIV.setImageResource(R.drawable.user_paper);
             binding.computerSelectIV.setImageResource(R.drawable.computer_paper);
             binding.resultTV.setText("Draw!");
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-        else if(playerChoice==paper&&computerChoice==rock){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == paper && computerChoice == rock) {
             binding.playerSelectIV.setImageResource(R.drawable.user_paper);
             binding.computerSelectIV.setImageResource(R.drawable.computer_rock);
             binding.resultTV.setText("Well Done! You passed");
 
             playerScore++;
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-        else if(playerChoice==paper&&computerChoice==sissor){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == paper && computerChoice == sissor) {
             binding.playerSelectIV.setImageResource(R.drawable.user_paper);
             binding.computerSelectIV.setImageResource(R.drawable.computer_sissor);
             binding.resultTV.setText("Oops! You failed");
 
             computerScore++;
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-
-        else if(playerChoice==sissor&&computerChoice==sissor){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == sissor && computerChoice == sissor) {
             binding.playerSelectIV.setImageResource(R.drawable.user_sissor);
             binding.computerSelectIV.setImageResource(R.drawable.computer_sissor);
             binding.resultTV.setText("Draw!");
 
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-        else if(playerChoice==sissor&&computerChoice==rock){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == sissor && computerChoice == rock) {
             binding.playerSelectIV.setImageResource(R.drawable.user_sissor);
             binding.computerSelectIV.setImageResource(R.drawable.computer_rock);
             binding.resultTV.setText("Oops! You failed");
 
             computerScore++;
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
-        }
-        else if(playerChoice==sissor&&computerChoice==paper){
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
+        } else if (playerChoice == sissor && computerChoice == paper) {
             binding.playerSelectIV.setImageResource(R.drawable.user_sissor);
             binding.computerSelectIV.setImageResource(R.drawable.computer_paper);
             binding.resultTV.setText("Well Done! You passed");
 
             playerScore++;
-            binding.computerScoreTv.setText(computerScore+"/"+cStage);
-            binding.playerScoreTV.setText(playerScore+"/"+cStage);
+            binding.computerScoreTv.setText(computerScore + "/" + cStage);
+            binding.playerScoreTV.setText(playerScore + "/" + cStage);
         }
 
 
-        if(cStage==totalStage){
-
-            /*
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            if(playerScore>computerScore){
-                builder.setTitle("Congratulation!");
-                builder.setMessage("Yeh! You won the game.");
+        if (cStage == totalStage) {
+            if(playerScore>highScore){
+                highScore=playerScore;
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("hScore",highScore);
+                editor.apply();
             }
-            else if(computerScore>playerScore){
-                builder.setTitle("OoPs!");
-                builder.setMessage("You lost the game");
-            }
-            else{
-                builder.setTitle("Oh!");
-                builder.setMessage("Match has been Tied.");
-            }
-           builder.setPositiveButton("Retry",new DialogInterface.OnClickListener(){
-
-
-               @Override
-               public void onClick(DialogInterface dialog, int which) {
-
-
-               }
-           });
-
-            builder.setPositiveButton("Exit",new DialogInterface.OnClickListener(){
-
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-
-                }
-            });
-
-
-            builder.create();
-            builder.show();
-
-*/
-
 
             final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
             final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.result_dialoge, null);
             TextView status = view.findViewById(R.id.statusTV);
             TextView title = view.findViewById(R.id.dialogeTitle);
             TextView score = view.findViewById(R.id.scoreTV);
-            TextView highScore = view.findViewById(R.id.bestScoreTV);
+            TextView hScore = view.findViewById(R.id.bestScoreTV);
 
             ImageView retry = view.findViewById(R.id.restartBtn);
             ImageView exit = view.findViewById(R.id.exitBtn);
 
-            if(playerScore>computerScore){
+            if (playerScore > computerScore) {
                 title.setText("Victory!");
                 status.setText("Congratulation!");
-                score.setText(playerScore+"/"+cStage);
-                highScore.setText("");
-            }
-            else if(computerScore>playerScore){
+                score.setText("Score: "+playerScore + "/" + cStage);
+                hScore.setText("Best: "+highScore + "/" + totalStage);
+            } else if (computerScore > playerScore) {
                 title.setText("Game Over!");
                 status.setText("You Lost!");
-                score.setText(playerScore+"/"+cStage);
-                highScore.setText("");
-            }
-            else{
+                score.setText("Score: "+playerScore + "/" + cStage);
+                hScore.setText("Best: "+highScore + "/" + totalStage);
+            } else {
                 title.setText("OMG!");
                 status.setText("Match Draw!");
-                score.setText(playerScore+"/"+cStage);
-                highScore.setText("");
+                score.setText("Score: "+playerScore + "/" + cStage);
+                hScore.setText("Best: "+highScore + "/" + totalStage);
             }
 
 
             retry.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    cStage = 0;
+                    playerScore = 0;
+                    computerScore = 0;
+                    binding.computerScoreTv.setText(computerScore + "/" + cStage);
+                    binding.playerScoreTV.setText(playerScore + "/" + cStage);
+
                     dialog.dismiss();
                 }
             });
@@ -234,9 +195,14 @@ public class MainActivity extends AppCompatActivity {
             exit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    
+                    moveTaskToBack(true);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(1);
                 }
             });
+
+            dialog.setView(view);
+            dialog.show();
 
         }
     }
