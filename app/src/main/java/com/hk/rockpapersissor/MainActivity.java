@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void play() {
         //guess computer choice
+        binding.resultTV.setVisibility(View.VISIBLE);
         cStage++;
 
         computerChoice = random.nextInt((3 - 1) + 1) + 1;
@@ -187,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     computerScore = 0;
                     binding.computerScoreTv.setText(computerScore + "/" + cStage);
                     binding.playerScoreTV.setText(playerScore + "/" + cStage);
+                    binding.resultTV.setVisibility(View.GONE);
 
                     dialog.dismiss();
                 }
