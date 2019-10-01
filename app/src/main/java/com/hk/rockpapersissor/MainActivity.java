@@ -209,6 +209,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        
+        final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
+        final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.exit_confirm_dialoge, null);
+        TextView yes = view.findViewById(R.id.yesBtn);
+        TextView no = view.findViewById(R.id.nosBtn);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setView(view);
+        dialog.show();
     }
 }

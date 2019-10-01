@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="15dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/dialoge_back">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/counterstrike_regular"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quit Game?"
+            android:background="@drawable/score_back"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"/>
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/yesBtn"
+                android:clickable="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/ethnocentric_rg"
+                android:textAlignment="center"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:background="@drawable/score_back"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:padding="5dp"/>
+            <TextView
+                android:id="@+id/nosBtn"
+                android:clickable="true"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/ethnocentric_rg"
+                android:textAlignment="center"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:background="@drawable/score_back"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>
