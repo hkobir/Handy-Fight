@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialoge_back"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/dialogeTitle"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Over"
+            android:background="@drawable/select_back"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"/>
+        <TextView
+            android:id="@+id/statusTV"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Over"
+            android:background="@drawable/score_back"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"/>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/scoreTV"
+                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="Score: "
+                android:background="@drawable/score_back"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_margin="8dp"
+                android:padding="5dp"/>
+            <TextView
+                android:id="@+id/bestScoreTV"
+                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="Best Score: "
+                android:background="@drawable/score_back"
+                android:layout_margin="8dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+<LinearLayout
+    android:layout_marginTop="-30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal|center_vertical">
+    <ImageView
+        android:id="@+id/restartBtn"
+        android:clickable="true"
+        android:layout_marginRight="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/restart"/>
+    <ImageView
+        android:id="@+id/exitBtn"
+        android:clickable="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/exit"/>
+</LinearLayout>
+
+</LinearLayout>
