@@ -6,7 +6,10 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hk.rockpapersissor.databinding.ActivityMainBinding;
 
@@ -150,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(cStage==totalStage){
 
+            /*
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             if(playerScore>computerScore){
                 builder.setTitle("Congratulation!");
@@ -187,6 +191,52 @@ public class MainActivity extends AppCompatActivity {
             builder.create();
             builder.show();
 
+*/
+
+
+            final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
+            final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.result_dialoge, null);
+            TextView status = view.findViewById(R.id.statusTV);
+            TextView title = view.findViewById(R.id.dialogeTitle);
+            TextView score = view.findViewById(R.id.scoreTV);
+            TextView highScore = view.findViewById(R.id.bestScoreTV);
+
+            ImageView retry = view.findViewById(R.id.restartBtn);
+            ImageView exit = view.findViewById(R.id.exitBtn);
+
+            if(playerScore>computerScore){
+                title.setText("Victory!");
+                status.setText("Congratulation!");
+                score.setText(playerScore+"/"+cStage);
+                highScore.setText("");
+            }
+            else if(computerScore>playerScore){
+                title.setText("Game Over!");
+                status.setText("You Lost!");
+                score.setText(playerScore+"/"+cStage);
+                highScore.setText("");
+            }
+            else{
+                title.setText("OMG!");
+                status.setText("Match Draw!");
+                score.setText(playerScore+"/"+cStage);
+                highScore.setText("");
+            }
+
+
+            retry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    
+                }
+            });
 
         }
     }
