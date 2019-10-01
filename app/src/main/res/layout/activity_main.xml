@@ -24,12 +24,13 @@
                 android:padding="5dp">
 
                 <TextView
+                    android:fontFamily="@font/ethnocentric_rg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Player Score : "
+                    android:text="Player Score: "
                     android:textColor="#090707"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp"
+                     />
 
                 <TextView
                     android:id="@+id/playerScoreTV"
@@ -61,12 +62,13 @@
                     android:orientation="horizontal"
                     android:layout_gravity="end">
                     <TextView
+                        android:fontFamily="@font/ethnocentric_rg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Computer Score : "
+                        android:text="Computer Score: "
                         android:textColor="#090707"
-                        android:textSize="17sp"
-                        android:textStyle="bold"  />
+                        android:textSize="14sp"
+                          />
 
                     <TextView
                         android:id="@+id/computerScoreTv"
@@ -92,6 +94,7 @@
 
         <TextView
             android:id="@+id/resultTV"
+            android:fontFamily="@font/starcraft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/gameField"
@@ -102,9 +105,9 @@
             android:paddingRight="15dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="Wel Done!"
+            android:text="Well Done!"
             android:textColor="#FCFDF7"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -181,6 +184,7 @@
                     android:src="@drawable/rock_button" />
 
                 <TextView
+                    android:fontFamily="@font/starcraft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rock"
@@ -193,7 +197,7 @@
                 android:id="@+id/paperButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="35dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:gravity="center_vertical|center_horizontal"
@@ -207,6 +211,7 @@
                     android:src="@drawable/paper_button" />
 
                 <TextView
+                    android:fontFamily="@font/starcraft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Paper"
@@ -219,7 +224,7 @@
                 android:id="@+id/sissorButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="35dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:gravity="center_vertical|center_horizontal"
@@ -233,6 +238,7 @@
                     android:src="@drawable/sissor_button" />
 
                 <TextView
+                    android:fontFamily="@font/starcraft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sissor"

@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@drawable/dialoge_back"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/dialoge_back">
         <TextView
+            android:layout_marginTop="5dp"
             android:id="@+id/dialogeTitle"
+            android:fontFamily="@font/counterstrike_regular"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Game Over"
             android:background="@drawable/select_back"
             android:textColor="#FFFFFF"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"/>
         <TextView
             android:id="@+id/statusTV"
+            android:fontFamily="@font/starcraft"
             android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
@@ -38,57 +46,61 @@
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/scoreTV"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/ethnocentric_rg"
                 android:textAlignment="center"
-                android:layout_marginTop="15dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 android:layout_height="wrap_content"
                 android:text="Score: "
                 android:background="@drawable/score_back"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_margin="8dp"
+                android:textSize="14sp"
                 android:padding="5dp"/>
             <TextView
                 android:id="@+id/bestScoreTV"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/ethnocentric_rg"
                 android:textAlignment="center"
-                android:layout_marginTop="15dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 android:layout_height="wrap_content"
-                android:text="Best Score: "
+                android:text="Best: "
                 android:background="@drawable/score_back"
-                android:layout_margin="8dp"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:padding="5dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|center_vertical">
+            <ImageView
+                android:id="@+id/restartBtn"
+                android:clickable="true"
+                android:layout_marginRight="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/restart"/>
+            <ImageView
+                android:id="@+id/exitBtn"
+                android:clickable="true"
+                android:layout_marginTop="3dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/exit"/>
+        </LinearLayout>
+    </LinearLayout>
 
-<LinearLayout
-    android:layout_marginTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_horizontal|center_vertical">
-    <ImageView
-        android:id="@+id/restartBtn"
-        android:clickable="true"
-        android:layout_marginRight="60dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/restart"/>
-    <ImageView
-        android:id="@+id/exitBtn"
-        android:clickable="true"
-        android:layout_marginTop="3dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/exit"/>
-</LinearLayout>
 
-</LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
