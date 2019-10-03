@@ -43,5 +43,15 @@
                     android:src="@drawable/ic_rock"/>
             </LinearLayout>
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copywrite --HK Lab--"
+            android:fontFamily="@font/starcraft"
+            android:textSize="12sp"
+            android:textColor="#F6FDE0"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"/>
     </RelativeLayout>
 </layout>
