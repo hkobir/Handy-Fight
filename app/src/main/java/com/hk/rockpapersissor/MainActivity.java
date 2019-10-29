@@ -23,21 +23,67 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
     private ActivityMainBinding binding;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences, sharedPreferences2;
+    private boolean resumeState = false;
     private int totalStage = 10;
     private int cStage = 0;
     private Random random;
     private int playerChoice = 0, computerChoice = 0;
     private int rock = 1, paper = 2, sissor = 3;
     private int playerScore = 0, computerScore = 0, highScore = 0;
-    private final String playerScoreKey = "", computerScoreKey = "", playerChoiceKey = "", computerChoiceKey = "", currenStageKey = "";
+    private final String playerScoreKey = "plScore", computerScoreKey = "cScoreKey", playerChoiceKey = "pChoiceKey", computerChoiceKey = "cChoiceKey", currenStageKey = "cStageKey",resultKey = "resultKey";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //if has resume state : restore data before restarting the activity state
+        sharedPreferences2 = getSharedPreferences("resumestate", MODE_PRIVATE);
+
+        resumeState = sharedPreferences2.getBoolean("isResume", false);
+        if (resumeState) {
+            final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
+            final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.startup_dialoge, null);
+            TextView resume = view.findViewById(R.id.resumeTV);
+            TextView newGame = view.findViewById(R.id.newGameTV);
+            resume.setOnClickListener(new View.OnClickListener() {              //start again from resume state
+                @Override
+                public void onClick(View v) {
+                    playerScore = sharedPreferences2.getInt(playerScoreKey, 0);
+                    computerScore = sharedPreferences2.getInt(computerScoreKey, 0);
+                    playerChoice = sharedPreferences2.getInt(playerChoiceKey, 0);
+                    computerChoice = sharedPreferences2.getInt(computerChoiceKey, 0);
+                    cStage = sharedPreferences2.getInt(currenStageKey, 0);
+
+                    //set into component
+
+                   play();
+
+
+
+                    dialog.dismiss();
+
+
+                }
+            });
+            newGame.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    SharedPreferences.Editor edit = sharedPreferences2.edit();
+                    edit.putBoolean("isResume", false);
+                    edit.apply();
+                    dialog.dismiss();      //no need to resume state just start from new state
+                }
+            });
+            dialog.setView(view);
+            dialog.show();
+        }
 
 
         random = new Random();
@@ -72,60 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //save data before destroy activity
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i(TAG, "onSaveInstanceState");
-        if (cStage > 0) {                              //when an unfinished stage are remaining
-            outState.putInt(playerScoreKey, playerScore);
-            outState.putInt(computerScoreKey, computerScore);
 
-            outState.putInt(playerChoiceKey, playerChoice);
-            outState.putInt(computerChoiceKey, computerChoice);
-
-            outState.putInt(currenStageKey, cStage);
-        }
-    }
-
-
-    //restore data before restarting the activity state
-    @Override
-    protected void onRestoreInstanceState(final Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.i(TAG, "onRestoreInstanceState");
-        if (savedInstanceState != null) {
-
-            final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
-            final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.startup_dialoge, null);
-            TextView resume = view.findViewById(R.id.resumeTV);
-            TextView newGame = view.findViewById(R.id.newGameTV);
-            resume.setOnClickListener(new View.OnClickListener() {              //start again from resume state
-                @Override
-                public void onClick(View v) {
-                    playerScore = savedInstanceState.getInt(playerScoreKey);
-                    computerScore = savedInstanceState.getInt(computerScoreKey);
-
-                    playerChoice = savedInstanceState.getInt(playerChoiceKey);
-                    computerChoice = savedInstanceState.getInt(computerChoiceKey);
-
-                    cStage = savedInstanceState.getInt(currenStageKey);
-
-
-                }
-            });
-            newGame.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();      //no need to resume state just start from new state
-                }
-            });
-            dialog.setView(view);
-            dialog.show();
-
-
-        }
-    }
 
     public void play() {
         //guess computer choice
@@ -203,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         if (cStage == totalStage) {
             if (playerScore > highScore) {
                 highScore = playerScore;
@@ -268,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public void onBackPressed() {
         final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -277,9 +273,35 @@ public class MainActivity extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences.Editor edit = sharedPreferences2.edit();
+
+                if (cStage > 0) {
+                    //when an unfinished stage are remaining
+
+                    edit.putBoolean("isResume", true);
+                    edit.putInt(playerScoreKey, playerScore);
+                    edit.putInt(computerScoreKey, computerScore);
+
+                    edit.putInt(playerChoiceKey, playerChoice);
+                    edit.putInt(computerChoiceKey, computerChoice);
+
+                    edit.putInt(currenStageKey, cStage);
+                    edit.putString(resultKey,binding.resultTV.getText().toString());
+                    edit.apply();
+                }
+                else{
+                    edit.putBoolean("isResume", false);
+                    edit.apply();
+                }
+
+
+
+                //terminate the apps
                 moveTaskToBack(true);
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(1);
+
+
             }
         });
 
@@ -293,4 +315,8 @@ public class MainActivity extends AppCompatActivity {
         dialog.setView(view);
         dialog.show();
     }
+
+
+
+
 }
